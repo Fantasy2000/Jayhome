@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>清晰度与分辨率、码率、帧率</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            font-size: 16px;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+        .content-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px 40px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            box-sizing: border-box;
+        }
+        .centered-title {
+            text-align: center;
+            font-size: 2.4em;
+            color: #ffffff;
+            margin-bottom: 30px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        h2 {
+            color: #4fc3f7;
+            border-bottom: 2px solid rgba(79, 195, 247, 0.4);
+            padding-bottom: 10px;
+            margin-top: 40px;
+            font-size: 1.8em;
+            font-weight: 500;
+        }
+        h3 {
+            color: #81d4fa;
+            margin-top: 25px;
+            font-size: 1.3em;
+        }
+        p {
+            margin: 15px 0;
+            font-size: 1.05em;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 25px auto;
+            border-radius: 12px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        img:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+        strong {
+            color: #ffd54f;
+            font-weight: 600;
+        }
+        .conclusion {
+            background: rgba(33, 150, 243, 0.15);
+            border-left: 4px solid #2196f3;
+            padding: 18px;
+            margin: 20px 0;
+            border-radius: 12px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .conclusion:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+        }
+        ul {
+            list-style-type: disc;
+            padding-left: 25px;
+            margin: 15px 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        .formula {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            font-family: "Courier New", Courier, monospace;
+            margin: 15px 0;
+            color: #81d4fa;
+        }
+        @media (max-width: 600px) {
+            .content-container {
+                padding: 20px;
+                margin: 20px;
+            }
+            .centered-title {
+                font-size: 2em;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
+            h3 {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="content-container">
+        <h1 class="centered-title">清晰度与分辨率、码率、帧率</h1>
+
+        <div class="content">
+            <h2>一、先说结论</h2>
+            <div class="conclusion">
+                <p>如果码率为变量，则帧率越高，每秒钟经过的画面越多，需要的码率也越高，体积也越大。</p>
+                <p>在码率一定的情况下，分辨率与清晰度成反比关系：分辨率越高，图像越不清晰，分辨率越低，图像越清晰。</p>
+                <p>在分辨率一定的情况下，码率与清晰度成正比关系，码率越高，图像越清晰；码率越低，图像越不清晰。</p>
+            </div>
+
+            <!-- 文件1内容：帧率、码率、分辨率关系图 -->
+            <div style="text-align:center; margin:25px 0;">
+                <div style="display:inline-block; background:rgba(255,255,255,0.05); padding:15px; border-radius:12px;">
+                    <h3 style="margin-top:0; color:#4fc3f7;">帧率、码率、分辨率关系</h3>
+                    <div style="display:flex; flex-wrap:wrap; gap:15px; justify-content:center;">
+                        <div style="flex:1; min-width:200px; background:rgba(0,0,0,0.2); padding:15px; border-radius:8px;">
+                            <p style="margin:0; font-size:1.1em;"><strong style="color:#ffd54f;">帧率</strong></p>
+                            <p style="margin:5px 0 0 0; font-size:0.95em;">影响视频的流畅度</p>
+                        </div>
+                        <div style="flex:1; min-width:200px; background:rgba(0,0,0,0.2); padding:15px; border-radius:8px;">
+                            <p style="margin:0; font-size:1.1em;"><strong style="color:#ffd54f;">码率</strong></p>
+                            <p style="margin:5px 0 0 0; font-size:0.95em;">影响存储时长、影响清晰度和传输带宽</p>
+                        </div>
+                        <div style="flex:1; min-width:200px; background:rgba(0,0,0,0.2); padding:15px; border-radius:8px;">
+                            <p style="margin:0; font-size:1.1em;"><strong style="color:#ffd54f;">分辨率</strong></p>
+                            <p style="margin:5px 0 0 0; font-size:0.95em;">决定视频的清晰度</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2>二、分辨率</h2>
+            <p>分辨率其实是码率决定的结果：</p>
+            <ul>
+                <li><strong>480p</strong> 称作 <strong>SD（Standard Definition）标清</strong></li>
+                <li><strong>720p</strong> 称作 <strong>HD（High Definition）高清</strong>，分辨率为 <strong>1280×720</strong> 像素</li>
+                <li><strong>1080p</strong> 称作 <strong>HD</strong> 或者 <strong>FHD（Full High Definition）高清或者全高清</strong>，分辨率为 <strong>1920×1080</strong> 像素</li>
+                <li><strong>2160p</strong> 我们称作 <strong>4K UHD（Ultra High Definition）超高清</strong>，分辨率为 <strong>3840×2160</strong> 像素</li>
+                <li><strong>4320p</strong> 我们则称作 <strong>8K UHD 超高清</strong>，分辨率为 <strong>7680×4320</strong> 像素</li>
+            </ul>
+
+            <!-- 文件2内容：分辨率对比表 -->
+            <div style="margin:25px 0;">
+                <h3 style="color:#81d4fa;">常见分辨率对照表</h3>
+                <table style="width:100%; border-collapse:collapse; background:rgba(255,255,255,0.05); border-radius:12px; overflow:hidden;">
+                    <thead>
+                        <tr style="background:rgba(79,195,247,0.2);">
+                            <th style="padding:12px; text-align:left; color:#4fc3f7; border-bottom:1px solid rgba(255,255,255,0.1);">视频类型</th>
+                            <th style="padding:12px; text-align:left; color:#4fc3f7; border-bottom:1px solid rgba(255,255,255,0.1);">格式尺寸</th>
+                            <th style="padding:12px; text-align:left; color:#4fc3f7; border-bottom:1px solid rgba(255,255,255,0.1);">比例</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);"><strong>4K</strong></td>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);">4096×2160</td>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);">16:9</td>
+                        </tr>
+                        <tr style="background:rgba(255,255,255,0.02);">
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);"><strong>2K</strong></td>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);">2560×1440</td>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);">16:9</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);"><strong>全高清 1080p</strong></td>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);">1920×1080</td>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);">16:9</td>
+                        </tr>
+                        <tr style="background:rgba(255,255,255,0.02);">
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);"><strong>高清 720p</strong></td>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);">1280×720</td>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);">16:9</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);"><strong>标清 480p</strong></td>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);">720×480</td>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);">3:2</td>
+                        </tr>
+                        <tr style="background:rgba(255,255,255,0.02);">
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);"><strong>标清 480p</strong></td>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);">640×480</td>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);">4:3</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:12px;"><strong>流畅 240p</strong></td>
+                            <td style="padding:12px;">320×240</td>
+                            <td style="padding:12px;">4:3</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>三、帧率</h2>
+            <p>帧率的单位是“<strong>fps</strong>”，常见的有 <strong>24fps</strong>、<strong>30fps</strong>、<strong>60fps</strong>。帧率越高视频播放起来会越流畅，但帧率越高，对设备要求也越高。</p>
+            <ul>
+                <li><strong>24 帧/秒</strong>：电影、流媒体视频内容（考虑到连接速度的不一致）、如果有人说话、风景和视频游戏捕获都会使用此速度来实现传统的电影外观。</li>
+                <li><strong>30 帧/秒</strong>：体育和新闻等电视直播以及大多数电视节目都使用此速度来提高视频质量和视频博客。特别是，30fps 是需要更清晰、更实时地显示运动的运动的首选帧速率。</li>
+                <li><strong>60 帧/秒</strong>：大多数观众已经开始接触 60fps。4K 分辨率可提供更高的帧速率显示，并为视频提供令人惊叹的细节和逼真的外观。此速度可生成慢动作视频并捕捉高端动作的视频游戏（格斗、射击、体育游戏）。</li>
+            </ul>
+            <p><strong>帧率越高越好么？</strong>错×，超过 <strong>75fps</strong> 就不容易察觉到有明显的流畅度提升了，更高的帧数率只有在超慢镜头才用到，也就是在拍超高速的事物时用到；相反，越高的帧速率，对硬件设备的要求也越高，帧数越高，不仅文件的体积大，处理任务的难度也会加大，后期的渲染时间也明显翻倍。</p>
+
+            <h2>四、码率</h2>
+            <p>码流（<strong>Data Rate</strong>）是指视频文件在单位时间内使用的数据流量，也叫码率或码流率，视频的码率和网速的表示方法差不多，我们一般用 <strong>Mbps</strong> 或是 <strong>kbps</strong> 表示这一秒钟视频的数据量（<strong>1 Mbps = 1000 kbps</strong>）。</p>
+            <p>码率决定了单位时间内的视频大小，一般来说同样分辨率下，视频文件的码流越大，压缩比就越小，画面质量就越高。码流越大，说明单位时间内取样率越大，数据流，精度就越高，处理出来的文件就越接近原始文件，图像质量越好，画质越清晰，要求播放设备的解码能力也越高。</p>
+
+            <!-- 文件3内容：分辨率与码率关系表 -->
+            <div style="margin:25px 0;">
+                <h3 style="color:#81d4fa;">常见分辨率、码率关系对照参考表</h3>
+                <table style="width:100%; border-collapse:collapse; background:rgba(255,255,255,0.05); border-radius:12px; overflow:hidden;">
+                    <thead>
+                        <tr style="background:rgba(79,195,247,0.2);">
+                            <th style="padding:12px; text-align:left; color:#4fc3f7; border-bottom:1px solid rgba(255,255,255,0.1);">名称</th>
+                            <th style="padding:12px; text-align:left; color:#4fc3f7; border-bottom:1px solid rgba(255,255,255,0.1);">分辨率（像素）</th>
+                            <th style="padding:12px; text-align:left; color:#4fc3f7; border-bottom:1px solid rgba(255,255,255,0.1);">码率</th>
+                            <th style="padding:12px; text-align:left; color:#4fc3f7; border-bottom:1px solid rgba(255,255,255,0.1);">每小时硬盘容量</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);"><strong>QCIF</strong></td>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);">176×144</td>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);">128Kb/s</td>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);">56.25MB/H</td>
+                        </tr>
+                        <tr style="background:rgba(255,255,255,0.02);">
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);"><strong>CIF</strong></td>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);">325×288</td>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);">512Kb/s</td>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);">225MB/H</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);"><strong>DCIF</strong></td>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);">528×384</td>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);">0.7Mb/s</td>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);">308MB/H</td>
+                        </tr>
+                        <tr style="background:rgba(255,255,255,0.02);">
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);"><strong>HafiD1</strong></td>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);">702×288</td>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);">1Mb/s</td>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);">439MB/H</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);"><strong>D1(4CIF)</strong></td>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);">704×576</td>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);">1.5Mb/s</td>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);">660MB/H</td>
+                        </tr>
+                        <tr style="background:rgba(255,255,255,0.02);">
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);"><strong>FULLD1</strong></td>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);">720×576</td>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);">2Mb/s</td>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);">879MB/H</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);"><strong>720P</strong></td>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);">1280×720</td>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);">3Mb/s</td>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);">1.3GB/H</td>
+                        </tr>
+                        <tr style="background:rgba(255,255,255,0.02);">
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);"><strong>960P</strong></td>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);">1280×960</td>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);">3.5Mb/s</td>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);">1.5GB/H</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);"><strong>1080P</strong></td>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);">1920×1080</td>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);">5Mb/s</td>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);">2.2GB/H</td>
+                        </tr>
+                        <tr style="background:rgba(255,255,255,0.02);">
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);"><strong>3MP</strong></td>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);">2048×1536</td>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);">7Mb/s</td>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);">3.1GB/H</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);"><strong>4MP</strong></td>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);">2560×1440</td>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);">8Mb/s</td>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);">3.6GB/H</td>
+                        </tr>
+                        <tr style="background:rgba(255,255,255,0.02);">
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);"><strong>5MP</strong></td>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);">2592×2048</td>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);">10Mb/s</td>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);">4.5GB/H</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);"><strong>8MP</strong></td>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);">3264×2448</td>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);">12Mb/s</td>
+                            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05);">5.4GB/H</td>
+                        </tr>
+                        <tr style="background:rgba(255,255,255,0.02);">
+                            <td style="padding:12px;"><strong>4K</strong></td>
+                            <td style="padding:12px;">3840×2160</td>
+                            <td style="padding:12px;">16Mb/s</td>
+                            <td style="padding:12px;">7.03GB/H</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>无压缩情况下码率的计算公式：</h3>
+            <div class="formula">
+                <p>分辨率 × 位深 × 帧率 ÷ 1024 ÷ 1024</p>
+                <p>注：有些标准是用 1000 代替 1024</p>
+                <p>单位：<strong>Mbps</strong></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
