@@ -1,6 +1,7 @@
 # JayHome 个人网站项目
 
 这是一个简单易用的个人主页网站，增加一言、评论系统、轮播动态、网易云音乐播放器、弹幕滚动、后台管理等功能。
+演示站点：https://jayhome.cc/
 <img width="1229" height="643" alt="image" src="https://pic1.imgdb.cn/item/69383e9000233646958e15bd.webp" />
 
 
