@@ -1,0 +1,209 @@
+/* 手机端轮播按钮 */
+.mobile-carousel-btn {
+    display: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.95), rgba(118, 75, 162, 0.95));
+    color: #fff;
+    font-size: 0;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.35);
+    position: relative;
+    flex-shrink: 0;
+}
+
+.mobile-carousel-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 18px;
+    height: 18px;
+    background: #fff;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23ffffff' d='M12 22a2 2 0 0 0 2-2H10a2 2 0 0 0 2 2zm6-6V11c0-3.07-1.64-5.64-4.5-6.32V4a1.5 1.5 0 0 0-3 0v.68C8.64 5.36 7 7.93 7 11v5l-2 2v1h18v-1l-2-2z'/%3E%3C/svg%3E") center/contain no-repeat;
+}
+
+/* 右上角红点提示 */
+.mobile-carousel-btn.has-badge::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 8px;
+    height: 8px;
+    background: #ff4d4f;
+    border: 2px solid rgba(255,255,255,0.9);
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px rgba(255,255,255,0.2);
+}
+
+.mobile-carousel-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 14px 32px rgba(15, 23, 42, 0.3);
+}
+
+/* 轮播弹窗 */
+.carousel-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 10001;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-modal.active {
+    display: flex;
+}
+
+.carousel-modal-content {
+    width: 90%;
+    max-width: 500px;
+    background: rgba(20, 24, 38, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    animation: carouselModalSlideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+@keyframes carouselModalSlideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.carousel-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 12px;
+}
+
+.carousel-modal-header h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+    margin: 0;
+}
+
+.carousel-modal-close {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-modal-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(90deg);
+}
+
+.carousel-modal-body {
+    margin-bottom: 16px;
+    min-height: 60px;
+}
+
+.carousel-modal-body p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+}
+
+.carousel-modal-footer {
+    text-align: right;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 12px;
+}
+
+.carousel-modal-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+    gap: 10px;
+}
+
+.carousel-modal-nav button {
+    flex: 1;
+    padding: 10px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.2s ease;
+}
+
+.carousel-modal-nav button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.carousel-modal-nav button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.carousel-modal-counter {
+    text-align: center;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    padding: 0 10px;
+    white-space: nowrap;
+}
+
+/* 手机端显示轮播按钮 */
+@media (max-width: 768px) {
+    .mobile-carousel-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .comment-form {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        width: 100%;
+    }
+
+    .comment-form-container {
+        display: flex;
+        align-items: center;
+    }
+}
+
